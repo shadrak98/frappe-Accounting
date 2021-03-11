@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "creation": "2021-03-11 12:38:27.005400",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "account",
+  "credit",
+  "debit",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "credit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Credit"
+  },
+  {
+   "fieldname": "debit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Debit"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Journal Entry Account",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-03-11 17:13:52.135357",
+ "modified_by": "Administrator",
+ "module": "Accounting",
+ "name": "Journal Entry Account",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
