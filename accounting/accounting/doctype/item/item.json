@@ -8,7 +8,8 @@
  "field_order": [
   "item_name",
   "item_group",
-  "item_code"
+  "item_code",
+  "item_rate"
  ],
  "fields": [
   {
@@ -30,11 +31,16 @@
    "fieldtype": "Data",
    "label": "Item Code",
    "unique": 1
+  },
+  {
+   "fieldname": "item_rate",
+   "fieldtype": "Currency",
+   "label": "Item Rate"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-11 17:14:45.096394",
+ "modified": "2021-03-15 10:29:34.986155",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Item",

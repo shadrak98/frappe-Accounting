@@ -20,13 +20,13 @@
   },
   {
    "fieldname": "credit",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Credit"
   },
   {
    "fieldname": "debit",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "in_list_view": 1,
    "label": "Debit"
   },
@@ -44,7 +44,7 @@
  "is_submittable": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-03-11 17:13:52.135357",
+ "modified": "2021-03-15 10:28:45.187409",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Journal Entry Account",
