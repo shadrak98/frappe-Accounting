@@ -40,8 +40,9 @@
   },
   {
    "fieldname": "party",
-   "fieldtype": "Data",
-   "label": "Party"
+   "fieldtype": "Link",
+   "label": "Party",
+   "options": "Party"
   },
   {
    "fieldname": "debit",
@@ -83,7 +84,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-16 11:44:29.949628",
+ "modified": "2021-03-17 09:27:13.360769",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "GL Entry",
