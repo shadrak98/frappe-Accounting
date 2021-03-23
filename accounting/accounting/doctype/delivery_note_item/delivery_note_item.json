@@ -1,7 +1,6 @@
 {
  "actions": [],
- "autoname": "field:item_name",
- "creation": "2021-03-17 09:33:13.650318",
+ "creation": "2021-03-22 12:49:49.961992",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -9,7 +8,8 @@
   "item_name",
   "item_quantity",
   "item_rate",
-  "amount"
+  "amount",
+  "standard_rate"
  ],
  "fields": [
   {
@@ -18,8 +18,7 @@
    "in_list_view": 1,
    "label": "Item Name",
    "options": "Item",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "fieldname": "item_quantity",
@@ -29,28 +28,37 @@
    "reqd": 1
   },
   {
-   "fetch_from": "item_name.item_rate",
+   "default": "0",
+   "fetch_from": "item_name.standard_rate",
    "fieldname": "item_rate",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Rate",
+   "options": "INR",
    "reqd": 1
   },
   {
+   "default": "0",
    "fieldname": "amount",
-   "fieldtype": "Currency",
+   "fieldtype": "Float",
    "in_list_view": 1,
-   "label": "Amount",
-   "read_only": 1
+   "label": "Amount"
+  },
+  {
+   "fetch_from": "item_name.standard_rate",
+   "fieldname": "standard_rate",
+   "fieldtype": "Float",
+   "hidden": 1,
+   "label": "Standard Rate"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-03-23 12:51:44.582210",
+ "modified": "2021-03-22 12:49:49.961992",
  "modified_by": "Administrator",
  "module": "Accounting",
- "name": "Purchase Order Item",
+ "name": "Delivery Note Item",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

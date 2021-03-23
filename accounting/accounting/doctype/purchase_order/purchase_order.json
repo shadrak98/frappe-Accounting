@@ -13,7 +13,11 @@
   "supplier",
   "amended_from",
   "section_break_7",
-  "item"
+  "item",
+  "totals_section",
+  "total_quantity",
+  "column_break_11",
+  "total_amount"
  ],
  "fields": [
   {
@@ -54,7 +58,8 @@
   },
   {
    "fieldname": "section_break_7",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Items"
   },
   {
    "fieldname": "naming_series",
@@ -62,12 +67,36 @@
    "label": "naming_series",
    "options": "ACC-PORD-.YYYY.-",
    "set_only_once": 1
+  },
+  {
+   "fieldname": "totals_section",
+   "fieldtype": "Section Break",
+   "label": "Totals",
+   "search_index": 1
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Amount",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-20 09:42:10.732352",
+ "modified": "2021-03-23 11:32:04.223771",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Order",
