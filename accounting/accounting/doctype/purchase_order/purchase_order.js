@@ -36,16 +36,32 @@ frappe.ui.form.on('Purchase Order Item', {
 	}
 });
 
+frappe.ui.form.on('Purchase Order', {
+    refresh: function(frm) {
+      	frm.add_custom_button(__('Purchase Receipt'), function(){
+			if(frm.doc.docstatus){
+				var doc_details = {
+					supplier : frm.doc.supplier,
+					purchase_order : frm.doc.name,
+					total_amount : parseFloat(frm.doc.total_amount),
+					total_quantity : frm.doc.total_quantity
+				}
+				frappe.new_doc('Purchase Receipt', doc_details)
+			}
+    	}, __("Create"));
+  	}
+});
+
 var calculate_total = function(frm) {
 	var total = 0;
 	var quantity = 0;
 	var items = frm.doc.item;
-	console.log(frm.doc.item);
-	console.log(items);
+	
 	for (var d in items) {
 		total = total + items[d].amount;
 		quantity = quantity + items[d].item_quantity;
-	} 
+	}
+
 	frm.set_value('total_amount', flt(total));
 	frm.set_value('total_quantity', quantity);
 }

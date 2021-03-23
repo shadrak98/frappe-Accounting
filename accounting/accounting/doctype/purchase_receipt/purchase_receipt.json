@@ -16,7 +16,8 @@
   "totals_section",
   "total_quantity",
   "total_amount",
-  "amended_from"
+  "amended_from",
+  "purchase_order"
  ],
  "fields": [
   {
@@ -63,7 +64,7 @@
   {
    "default": "0",
    "fieldname": "total_quantity",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Total Quantity",
    "read_only": 1
   },
@@ -86,12 +87,19 @@
   {
    "fieldname": "column_break_3",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order ",
+   "options": "Purchase Order",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-20 10:02:26.590324",
+ "modified": "2021-03-23 21:33:13.136852",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Receipt",

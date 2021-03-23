@@ -64,7 +64,7 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "naming_series",
+   "label": "Series",
    "options": "ACC-PORD-.YYYY.-",
    "set_only_once": 1
   },
@@ -96,7 +96,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-23 11:32:04.223771",
+ "modified": "2021-03-23 21:09:48.518768",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Order",

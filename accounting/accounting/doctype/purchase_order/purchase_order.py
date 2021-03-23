@@ -15,7 +15,7 @@ class PurchaseOrder(Document):
 
 	def validate_quantity(self):
 		for i in self.item:
-			if i.quantity < 0 or i.quantity == 0:
+			if i.item_quantity < 0 or i.item_quantity == 0:
 				frappe.throw("Quantity should be more than 0.")
 
 	def calc_total_amount(self):
@@ -23,5 +23,5 @@ class PurchaseOrder(Document):
 		if not self.item:
 			frappe.throw("There are no Items to save.")
 		for itm in self.item:
-			amount = itm.quantity * itm.rate
+			amount = itm.item_quantity * itm.item_rate
 			self.total_amount = flt(amount)
