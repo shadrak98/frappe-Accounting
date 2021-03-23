@@ -21,7 +21,7 @@ frappe.ui.form.on('Purchase Order Item', {
 		row.amount = total;
 		// frm.refresh_field('amount');
 		calculate_total(frm);
-		frm.refresh();
+		frm.refresh_fields();
 	},
 	item_quantity(frm, cdt, cdn) {
 		//let row = frappe.get_doc(cdt, cdn);
@@ -32,23 +32,18 @@ frappe.ui.form.on('Purchase Order Item', {
 		row.amount = total;
 		frm.refresh_field('amount');
 		calculate_total(frm);
-		frm.refresh();
+		frm.refresh_fields();
 	}
 });
 
 var calculate_total = function(frm) {
 	var total = 0;
 	var quantity = 0;
-	var items = frm.doc.items;
-	console.log(frm);
+	var items = frm.doc.item;
 	for (var d in items) {
 		total = total + items[d].amount;
 		quantity = quantity + items[d].item_quantity;
-		// console.log(total + " " + quantity);
 	} 
-	// frm.doc.total_quantity = quantity;
-	// frm.doc.total_amount = flt(total);
-	// frm.refresh_field('total_amount');
 	frm.set_value('total_amount', flt(total));
 	frm.set_value('total_quantity', quantity);
 }
