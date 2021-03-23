@@ -40,6 +40,8 @@ var calculate_total = function(frm) {
 	var total = 0;
 	var quantity = 0;
 	var items = frm.doc.item;
+	console.log(frm.doc.item);
+	console.log(items);
 	for (var d in items) {
 		total = total + items[d].amount;
 		quantity = quantity + items[d].item_quantity;
