@@ -12,14 +12,7 @@ frappe.ui.form.on('Purchase Order', 'onload', function(frm) {
 });
 
 frappe.ui.form.on('Purchase Order Item', {
-	item_name(frm, cdt, cdn) {
-		//let row = frappe.get_doc(cdt, cdn);
-		let row = locals[cdt][cdn];
-		let qty = row.item_quantity;
-		let rate = row.item_rate;
-		let total = qty * rate;
-		row.amount = total;
-		// frm.refresh_field('amount');
+	item_name(frm) {
 		calculate_total(frm);
 		frm.refresh_fields();
 	},
@@ -43,7 +36,7 @@ frappe.ui.form.on('Purchase Order', {
 				var doc_details = {
 					supplier : frm.doc.supplier,
 					purchase_order : frm.doc.name,
-					total_amount : parseFloat(frm.doc.total_amount),
+					total_amount : frm.doc.total_amount,
 					total_quantity : frm.doc.total_quantity
 				}
 				frappe.new_doc('Purchase Receipt', doc_details)

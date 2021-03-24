@@ -8,8 +8,18 @@
  "field_order": [
   "company_name",
   "bank_name",
+  "column_break_3",
   "country",
-  "domain"
+  "domain",
+  "default_accounts_section",
+  "default_inventory_account",
+  "default_payable_account",
+  "default_receivable_account",
+  "column_break_10",
+  "stock_received_but_not_billed",
+  "default_income_account",
+  "default_expense_account",
+  "default_cash_account"
  ],
  "fields": [
   {
@@ -32,13 +42,69 @@
   },
   {
    "fieldname": "domain",
-   "fieldtype": "Data",
-   "label": "Domain"
+   "fieldtype": "Select",
+   "label": "Domain",
+   "options": "Product\nService\nManufacturing\nRetail\nDistribution\nOther"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_accounts_section",
+   "fieldtype": "Section Break",
+   "label": "Default Accounts"
+  },
+  {
+   "fieldname": "default_inventory_account",
+   "fieldtype": "Link",
+   "label": "Default Inventory Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "default_payable_account",
+   "fieldtype": "Link",
+   "label": "Default Payable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "default_receivable_account",
+   "fieldtype": "Link",
+   "label": "Default Receivable Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "stock_received_but_not_billed",
+   "fieldtype": "Link",
+   "label": "Stock Received But Not Billed ",
+   "options": "Account"
+  },
+  {
+   "fieldname": "default_income_account",
+   "fieldtype": "Link",
+   "label": "Default Income Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "default_expense_account",
+   "fieldtype": "Link",
+   "label": "Default Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "default_cash_account",
+   "fieldtype": "Link",
+   "label": "Default Cash Account",
+   "options": "Account"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-02-26 12:27:34.686122",
+ "modified": "2021-03-24 10:34:38.839149",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Company",

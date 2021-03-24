@@ -79,9 +79,9 @@
    "options": "Account"
   },
   {
-   "fieldname": "amount",
+   "fieldname": "amount_paid",
    "fieldtype": "Float",
-   "label": "Amount",
+   "label": "Amount Paid",
    "read_only": 1
   },
   {
@@ -103,6 +103,12 @@
    "options": "Payment Entry",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+    "fieldname": "reference",
+    "fieldtype": "Data",
+    "label": "Reference",
+    "hidden": 1
   }
  ],
  "index_web_pages_for_search": 1,
