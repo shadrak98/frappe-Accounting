@@ -11,8 +11,8 @@ from frappe.utils import flt
 class SalesInvoice(Document):
 	
 	def validate(self):
-		self.validate_quantity()
-		self.calculate_total()
+		validate_quantity(self)
+		calculate_total(self)
 
 	def on_submit(self):
 		default_receivable_account = frappe.get_value('Company', self.company, 'default_receivable_account')
@@ -23,16 +23,21 @@ class SalesInvoice(Document):
 	def on_cancel(self):
 		make_reverse_gl_entry(self, self.doctype, self.name)
 
-	def validate_quantity(self):
-		for d in items:
-			if d.quantity < 0 or d.quantity == 0:
-				frappe.throw("Item quantity should be more than 0.")
+def validate_quantity(self):
+	for d in self.items:
+		if d.quantity < 0 or d.quantity == 0:
+			frappe.throw("Item quantity should be more than 0.")
 
-	def calculate_total(self):
-		self.total_amount, self.total_quantity = 0, 0
-		if not self.items:
-			frappe.throw("There are no items to be saved. Please add items.")
-		for d in self.items:
-			d.amount = d.quantity + d.rate 
-			self.total_amount = self.total_amount + d.amount
-			self.total_quantity = self.total_quantity + d.quantity
+def calculate_total(self):
+	self.total_amount, self.total_quantity = 0, 0
+	if not self.items:
+		frappe.throw("There are no items to be saved. Please add items.")
+	for d in self.items:
+		d.amount = d.quantity + d.rate 
+		self.total_amount = self.total_amount + d.amount
+		self.total_quantity = self.total_quantity + d.quantity
+
+@frappe.whitelist
+def get_sales_invoice_items(name=None):
+	parent = frappe.get_doc('Sales Invoice',name)
+	return parent

@@ -3,6 +3,20 @@ import frappe
 from frappe.utils import now
 
 def make_gl_entry(self, account, debit, credit):
+    if(self.doctype == "Sales Invoice"):
+        party_type = "Customer"
+        party = self.customer
+    elif (self.doctype == "Purchase Invoice"):
+        party_type = "Supplier"
+        party = self.supplier
+    elif (self.doctype == "Payment Entry"):
+        if(self.payment_type == "Receive"):
+            party_type = "Customer"
+            party = self.party
+        else:
+            party_type = "Supplier"
+            party = self.party
+    
     gl_entry = frappe.get_doc({
         'doctype': 'GL Entry',
         'posting_date': self.posting_date,
@@ -11,7 +25,9 @@ def make_gl_entry(self, account, debit, credit):
         'voucher_no': self.name,
         'debit': debit,
         'credit': credit,
-        'company': self.company
+        'company': self.company,
+        'party': party,
+        'party_type': party_type
     })
     gl_entry.insert()
 

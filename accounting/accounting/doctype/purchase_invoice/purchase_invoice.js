@@ -41,7 +41,9 @@ frappe.ui.form.on('Purchase Invoice', {
 				frappe.new_doc('Payment Entry', {
 					payment_type: 'Pay',
 					amount_paid: frm.doc.total_amount,
-					reference: frm.doc.name
+					party: frm.doc.supplier,
+					party_type: 'Supplier'
+					// payment_reference: frm.doc.name
 				})
 			})
 		}
@@ -63,6 +65,10 @@ var calculate_total = function(frm){
 	var total = 0;
 	var quantity = 0;
 	var items = frm.doc.items;
+
+	for(var i in items) {
+		items[i].amount = items[i].rate * items[i].quantity;
+	}
 
 	for(var i in items){
 		total = total + items[i].amount;

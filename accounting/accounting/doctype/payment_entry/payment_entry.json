@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "naming_series",
+ "autoname": "naming_series:",
  "creation": "2021-03-22 12:36:21.749671",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,15 +9,20 @@
   "type_of_payment_section",
   "naming_series",
   "posting_date",
-  "column_break_4",
   "payment_type",
+  "column_break_4",
   "company",
+  "document_type",
+  "document_name",
   "payments_from_to_section",
   "account_paid_from",
   "column_break_9",
   "account_paid_to",
   "amount",
+  "party",
+  "party_type",
   "reference_section",
+  "reference",
   "payment_reference",
   "amended_from"
  ],
@@ -79,12 +84,6 @@
    "options": "Account"
   },
   {
-   "fieldname": "amount_paid",
-   "fieldtype": "Float",
-   "label": "Amount Paid",
-   "read_only": 1
-  },
-  {
    "fieldname": "reference_section",
    "fieldtype": "Section Break",
    "label": "References"
@@ -105,19 +104,59 @@
    "read_only": 1
   },
   {
-    "fieldname": "reference",
-    "fieldtype": "Data",
-    "label": "Reference",
-    "hidden": 1
+   "fieldname": "amount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Amount",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Reference"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "label": "Document Type",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "document_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Document Name",
+   "options": "document_type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Party",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Party Type",
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-22 12:42:36.559956",
+ "modified": "2021-04-08 10:21:40.290720",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Payment Entry",
+ "name_case": "Title Case",
  "owner": "Administrator",
  "permissions": [
   {

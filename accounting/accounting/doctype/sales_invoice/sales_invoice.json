@@ -1,21 +1,21 @@
 {
  "actions": [],
- "autoname": "naming_series",
+ "autoname": "naming_series:",
  "creation": "2021-03-20 11:49:44.569633",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "customer",
-  "delivery_note",
-  "column_break_3",
   "naming_series",
+  "column_break_3",
   "company",
   "posting_date",
   "ordered_items_section",
   "items",
   "totals_section",
   "total_quantity",
+  "column_break_11",
   "total_amount",
   "amended_from"
  ],
@@ -27,12 +27,6 @@
    "label": "Customer",
    "options": "Party",
    "reqd": 1
-  },
-  {
-   "fieldname": "delivery_note",
-   "fieldtype": "Data",
-   "label": "Delivery Note",
-   "read_only": 1
   },
   {
    "fieldname": "column_break_3",
@@ -101,15 +95,20 @@
    "options": "Sales Invoice",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-20 11:49:44.569633",
+ "modified": "2021-04-01 10:31:44.211481",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Sales Invoice",
+ "name_case": "Title Case",
  "owner": "Administrator",
  "permissions": [
   {

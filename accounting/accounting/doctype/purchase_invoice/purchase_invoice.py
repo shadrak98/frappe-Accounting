@@ -36,7 +36,7 @@ class PurchaseInvoice(Document):
 			d.amount = d.quantity * d.rate
 		for d in self.items:
 			self.total_amount = flt(self.total_amount) + flt(d.amount)
-			self.total_quantity = self.total_quantity + f.quantity
+			self.total_quantity = self.total_quantity + d.quantity
 
 @frappe.whitelist
 def get_purchase_receipt_items(name=None):

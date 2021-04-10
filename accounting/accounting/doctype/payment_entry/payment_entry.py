@@ -11,7 +11,7 @@ from frappe.utils import flt
 class PaymentEntry(Document):
 	def validate(self):
 		self.amount = 0
-		for d in self.payment_references:
+		for d in self.payment_reference:
 			self.amount = self.amount + flt(d.amount)
 		if self.payment_type == "Pay":
 			account_paid_to = frappe.get_value('Company',self.company,'default_payable_account')
@@ -19,7 +19,7 @@ class PaymentEntry(Document):
 			self.account_paid_to = account_paid_to
 			self.account_paid_from  = account_paid_from
 		elif self.payment_type == "Receive":
-			ccount_paid_to = frappe.get_value('Company',self.company,'default_cash_account')
+			account_paid_to = frappe.get_value('Company',self.company,'default_cash_account')
 			account_paid_from = frappe.get_value('Company',self.company,'default_receivable_account')
 			self.account_paid_to = account_paid_to
 			self.account_paid_from  = account_paid_from

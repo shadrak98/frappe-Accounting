@@ -14,14 +14,18 @@ frappe.ui.form.on('Sales Invoice', {
 	refresh(frm){
 		if(frm.doc.docstatus){
 			frm.add_custom_button(__('Make Payment'), function(){
-				frappe.new_doc('Payment Entry', {
-					payment_type:'Receive',
-					amount:frm.doc.total_amount,
-					payment_reference:frm.doc.name
-				})
+				if(frm.doc.docstatus){
+					// console.log(frm.doc.total_amount + " " + frm.doc.name)
+					frappe.new_doc('Payment Entry', {
+						payment_type:'Receive',
+						amount: frm.doc.total_amount,
+						party: frm.doc.customer,
+						party_type: 'Customer'
+					})
+				}
 			})
 		}
-	}	
+	}
 });
 
 frappe.ui.form.on('Sales Invoice Item', {
@@ -45,11 +49,16 @@ var calculate_total = function(frm) {
 	var items = frm.doc.items;
 
 	for(var i in items) {
+		items[i].amount = items[i].quantity * items[i].rate;
+	}
+
+	for(var i in items) {
 		total = total + items[i].amount;
 		quantity = quantity + items[i].quantity;
 	}
 
 	frm.set_value('total_amount', flt(total));
 	frm.set_value('total_quantity', quantity);
+	console.log(total + " " + quantity);
 }
 

@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "naming_series",
+ "autoname": "naming_series:",
  "creation": "2021-03-20 10:19:28.736590",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -8,7 +8,6 @@
  "field_order": [
   "supplier",
   "company",
-  "purchase_receipt",
   "column_break_4",
   "naming_series",
   "posting_date",
@@ -16,6 +15,7 @@
   "items",
   "totals_section",
   "total_quantity",
+  "column_break_10",
   "total_amount",
   "amended_from"
  ],
@@ -34,14 +34,6 @@
    "in_list_view": 1,
    "label": "Company",
    "options": "Company",
-   "reqd": 1
-  },
-  {
-   "fieldname": "purchase_receipt",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Purchase Receipt",
-   "options": "Purchase Receipt",
    "reqd": 1
   },
   {
@@ -98,15 +90,20 @@
    "options": "Purchase Invoice",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-20 10:19:28.736590",
+ "modified": "2021-04-01 10:30:29.455763",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Invoice",
+ "name_case": "Title Case",
  "owner": "Administrator",
  "permissions": [
   {
