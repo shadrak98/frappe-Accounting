@@ -8,7 +8,7 @@ from frappe.utils.nestedset import NestedSet
 
 class Account(NestedSet):
 	def validate(self):
-		self.account_name = self.account_name + '-' + self.company[0]
+		self.account_name = self.account_name
 
 @frappe.whitelist()	
 def get_children(doctype, parent=None, company=None, is_root=False):

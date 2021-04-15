@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "autoname": "field:item_name",
  "creation": "2021-02-26 11:11:11.555377",
  "doctype": "DocType",
@@ -9,7 +10,8 @@
   "item_name",
   "item_group",
   "item_code",
-  "item_rate"
+  "item_rate",
+  "route"
  ],
  "fields": [
   {
@@ -36,11 +38,17 @@
    "fieldname": "item_rate",
    "fieldtype": "Currency",
    "label": "Item Rate"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-15 10:29:34.986155",
+ "modified": "2021-04-15 14:05:31.277572",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Item",
@@ -59,6 +67,7 @@
    "write": 1
   }
  ],
+ "route": "items",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1

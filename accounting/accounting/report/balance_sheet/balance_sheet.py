@@ -10,29 +10,29 @@ def execute(filters=None):
 
 	columns = get_columns()
 	
-	income = get_data(filters.company,'Income')
-	expense = get_data(filters.company,'Expense')
+	assest = get_data(filters.company,'Asset')
+	liability = get_data(filters.company,'Liability')
 	
-	data.extend(income)
-	data.extend(expense)
+	data.extend(assest)
+	data.extend(liability)
 	
 	get_total_profit_loss(data)
 	
-	report_summary = get_report_summary(income[-2],expense[-2],data[-1])
+	report_summary = get_report_summary(assest[-2],liability[-2],data[-1])
 	return columns, data, None, None, report_summary 
 
-def get_report_summary(income,expense,profit_loss):
+def get_report_summary(assest,liability,profit_loss):
 	return [
 		{
-			"value": income['amount'],
-			"label": "Total Income This Year",
+			"value": assest['amount'],
+			"label": "Total assest",
 			"datatype": "Currency",
 			"currency": "₹"
 		},
 			{ "type": "separator", "value": "-"},
 		{
-			"value": expense['amount'],
-			"label": "Total Expense This Year",
+			"value": liability['amount'],
+			"label": "Total liability",
 			"datatype": "Currency",
 			"currency": "₹"
 		},
@@ -40,7 +40,7 @@ def get_report_summary(income,expense,profit_loss):
 		
 		{
 			"value":profit_loss['amount'],
-			"label": "Profit/Loss This Year",
+			"label": "Provisional Profit/Loss",
 			"indicator": "Green" if profit_loss['amount'] > 0 else "Red" ,
 			"datatype": "Currency",
 			"currency": "₹"
@@ -63,7 +63,7 @@ def get_data(company,account_type):
 					data_add(data,d,indent)
 					break
 			indent = indent + 1
-	root_type = "Income" if account_type == "Income" else "Expenses"
+	root_type = "Asset" if account_type == "Asset" else "Liability"
 	
 	get_account_balances(company,data,root_type)
 		
@@ -94,7 +94,7 @@ def get_account_balances(company,accounts,root_type):
 			data.append(a)
 	
 	total_credit_debit = {
-		'account':'Total ' + accounts[0]['account_type'] + (' (' + "Debit" + ')' if accounts[0]['account_type'] == 'Expense' else ' ('+'Credit' +')'),
+		'account':'Total ' + accounts[0]['account_type'] + (' (' + "Debit" + ')' if accounts[0]['account_type'] == 'Liability' else ' ('+'Credit' +')'),
 		'amount':accounts[0]['amount']
 		}
 	accounts.append(total_credit_debit)
@@ -105,7 +105,7 @@ def get_total_profit_loss(data):
 	total_credit = data[-2]['amount']
 	total_profit_loss = total_debit - abs(total_credit)
 	total_credit += total_profit_loss
-	data.append({'account':'Profit/Loss for the year','amount':total_profit_loss})
+	data.append({'account':'Provisional Profit/Loss','amount':total_profit_loss})
 	
 
 	

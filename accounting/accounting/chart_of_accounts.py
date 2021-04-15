@@ -78,7 +78,7 @@ def get_chart(company, abbr):
 
             if name not in ["account_type", "is_group"]:
                 is_group = identify_is_group(child)
-                name_with_abbr = name + '_' + abbr
+                name_with_abbr = name + '-' + abbr
                 account = frappe.get_doc({
                     'doctype':'Account',
                     'parent_account': parent,

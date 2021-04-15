@@ -8,6 +8,7 @@
  "field_order": [
   "company_name",
   "bank_name",
+  "abbr",
   "column_break_3",
   "country",
   "domain",
@@ -100,11 +101,18 @@
    "fieldtype": "Link",
    "label": "Default Cash Account",
    "options": "Account"
+  },
+  {
+   "fieldname": "abbr",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Abbreviation",
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-24 10:34:38.839149",
+ "modified": "2021-04-14 20:46:27.950849",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Company",

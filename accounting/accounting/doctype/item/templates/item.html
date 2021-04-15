@@ -1,0 +1,16 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h1>{{ title }}</h1>
+<br>
+<h5> Item Description </h5>
+<hr>
+<b>Item Name:</b> <p>{{ doc.item_name }}</p>
+<b>Item Rate:</b> <p>{{ doc.item_rate }}</p>
+{% set company = frappe.get_doc('Company', 'Gada Electronics') %}
+<b>Company:</b> <p>{{ company.name }}</p>
+<b>Item Code:</b> <p>{{ doc.item_code }}</p>
+
+{% endblock %}
+
+<!-- this is a sample default web page template -->
