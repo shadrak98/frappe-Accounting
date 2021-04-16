@@ -1,0 +1,224 @@
+{% if "Guest" in user %}
+<script> window.location.replace('/login') </script>
+{% endif %}
+
+{% if cart %}
+
+<section>
+
+    <!--Grid row-->
+    <div class="row">
+  
+        <!--Grid column-->
+        <div class="col-lg-8">
+  
+            <!-- Card -->
+            <div class="card wish-list mb-3">
+                <div class="card-body">
+    
+                    <h5 class="mb-4">Cart (<span>{{cart.get('items')|length}}</span> items)</h5>
+  
+                    {% for d in cart.get('items') %}
+                    
+                    {% set name = frappe.db.get_value("Item",d.item_name, 'item_name') %}
+                    {% set price = frappe.db.get_value('Item',d.item_name, 'item_rate') %}
+                    {% set code = frappe.db.get_value('Item', d.item_name, 'item_code') %}
+            
+                    <hr class="mb-4">
+                    <div class="row mb-4">
+                        <div class="col-md-7 col-lg-9 col-xl-9">
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5>{{name}}</h5>
+                                        <p class="mb-3 text-muted text-uppercase small">Price: {{price}} </p>
+                                        <p class="mb-2 text-muted text-uppercase small">Code: {{code}}</p>
+                    
+                                    </div>
+                                    <div>
+                                        <div class="mb-2">
+                                            <button data-index= "{{loop.index}}" onclick="this.parentNode.querySelector('input[type=number]').stepDown(); UpdateQty(this)" class="minus btn btn-light btn-sm">-</button>
+                                            <input class="qty" min="1" value="{{d.quantity}}" type="number" style = "width:2rem">
+                                            <button data-index= "{{loop.index}}" onclick="this.parentNode.querySelector('input[type=number]').stepUp(); UpdateQty(this)" class="plus btn btn-light btn-sm">+</button>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <a href="#!" type="button" class=" small text-uppercase mr-3 text-danger" data-index= "{{loop.index}}" onclick="RemoveFromCart(this)"><i
+                                            class="fas fa-trash-alt mr-1 text-danger"></i> Remove item </a>
+                                        <a href="#!" type="button" class="card-link-secondary small text-uppercase" data-index= "{{loop.index}}" onclick="BuyItem(this)"><i
+                                            class="fas fa-shopping-cart mr-1"></i> Buy Now </a>
+                                    </div>
+                                    <p class="mb-0"><span><strong>₹ {{frappe.format(price,{'fieldtype':'Currency'})}}</strong></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+
+            <!-- Card -->
+            <div class="card mb-3">
+                <div class="card-body">
+        
+                    <h5 class="mb-3">Summary</h5>
+        
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            Total Price
+                        <span>₹{{frappe.format(cart.total_amount,{'fieldtype':'Currency'})}}</span>
+                
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                            Total Quantity
+                            <span>{{cart.total_quantity}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <div>
+                                <strong>Grand Total</strong>
+                            
+                            </div>
+                            <span><strong>₹{{frappe.format(cart.total_amount,{'fieldtype':'Currency'})}}</strong></span>
+                        </li>
+                    </ul>
+        
+                    <button type="button" class="btn btn-primary btn-block text-uppercase" onclick="CheckOut()">Checkout</button>
+        
+                </div>
+            </div>
+            <!-- Card -->
+        
+        </div>
+        <!--Grid column-->
+        
+    </div>
+    <!--Grid row-->
+        
+</section>
+        
+        <!-- </div> -->
+
+{% else %}
+
+<div class="container">
+    <h2>No Items</h2>
+</div>
+
+{%endif%}
+
+<script>
+    function UpdateQty(data){
+    var qty = data.parentNode.querySelector('input[type=number]').value
+    var idx = data.getAttribute("data-index");
+    idx -= 1;
+    console.log(qty)
+        frappe.call({
+          method:
+            "accounting.accounting.doctype.sales_invoice.sales_invoice.update_cart",
+          args: {
+            user: frappe.session.user,
+            index:idx,
+            update:true,
+            qty:qty
+          },
+          callback: function (r) {
+            window.location.reload()
+          },
+        });
+    
+  
+    }
+
+    function CheckOut(){
+
+        frappe.confirm(
+            "Are you sure you want to checkout? " ,
+            function () {
+                frappe.call({
+                    method:
+                        "accounting.accounting.doctype.sales_invoice.sales_invoice.update_cart",
+                    args: {
+                        user: frappe.session.user,
+                        index:0,
+                        submit:true
+                    },
+                    callback: function (r) {
+                        
+                        
+                        frappe.msgprint({
+                            message: "Thanks for shopping!",
+                            indicator: "success",
+                            title:"Success"
+                        });
+                        
+                        setTimeout(function(){
+                            window.location.reload(1);
+                        }, 3000);
+                        
+                    },
+                });
+            },
+            function () {
+                window.close();
+            }
+        );
+    }
+
+function RemoveFromCart(data) {
+    var idx = data.getAttribute("data-index");
+    idx -= 1;
+    console.log(idx)
+    frappe.call({
+      method:
+        "accounting.accounting.doctype.sales_invoice.sales_invoice.update_cart",
+      args: {
+        user: frappe.session.user,
+        index: idx,
+      },
+      callback: function (r) {
+        location.reload();
+      },
+    });
+  }
+
+
+  function BuyItem(data) {
+    
+    frappe.confirm(
+      "Are you sure you want to purchase this item?",
+      function () {
+        var idx = data.getAttribute("data-index");
+        idx -= 1;
+        frappe.call({
+          method:
+            "accounting.accounting.doctype.sales_invoice.sales_invoice.update_cart",
+          args: {
+            user: frappe.session.user,
+            index: idx,
+            buy:true
+          },
+          callback: function (r) {
+            
+            frappe.msgprint({
+              message: "Thanks for shopping!",
+              indicator: "success",
+              title:"Success"
+            });
+            
+            setTimeout(function(){
+              window.location.reload(1);
+           }, 3000);
+          },
+        });
+      },
+      function () {
+        window.close();
+      }
+    );
+  }
+</script>

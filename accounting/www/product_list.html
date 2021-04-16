@@ -1,0 +1,40 @@
+<div class="card" style="width: 20rem; margin-bottom: 1rem;">
+    <div class="card-body">
+        <h3 class="card-title"><b>{{item.item_name}}</b></h3>
+        <h6 class="card-subtitle mb-2 text-muted">Amount: {{item.item_rate}}</h6>
+        <br>
+        <div class="row">
+            <div class="col">
+                <button value="{{item.item_name}}" class="btn btn-primary" onclick="add_to_cart(this.value)">Add to Cart</button>
+            </div>
+            <div class="col">
+                <a href="{{item.route}}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block base_scripts %}
+<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+{% endblock %}
+
+<script>
+function add_to_cart(value) {
+    console.log(value)
+    frappe.call({
+        method: 'accounting.accounting.doctype.sales_invoice.sales_invoice.add_to_cart',
+        args: {
+            user: frappe.session.user,
+            item_name: value,
+            quantity: flt(1)
+        },
+        callback:function(r){
+            frappe.msgprint({
+                title:'Success',
+                indicator:'green',
+                message:'Added to cart'
+            });
+        }
+    })
+}
+</script>

@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3>Products</h3>
+        </div>
+        <div class="col text-right">
+            <a href="/cart" class="btn btn-primary">Cart</a>
+        </div>
+    </div>
+
+    
+
+    <div class="row">
+        <ul style="list-style: none;">
+        {% for item in items %}
+            <li>{% include "accounting/www/product_list.html" %}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
