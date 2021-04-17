@@ -29,7 +29,6 @@
   },
   {
    "default": "0",
-   "fetch_from": "item_name.item_rate",
    "fieldname": "rate",
    "fieldtype": "Float",
    "in_list_view": 1,

@@ -33,7 +33,7 @@ def calculate_total(self):
 	if not self.items:
 		frappe.throw("There are no items to be saved. Please add items.")
 	for d in self.items:
-		d.amount = d.quantity * d.rate 
+		d.amount = flt(d.quantity) * flt(d.rate) 
 		self.total_amount = self.total_amount + d.amount
 		self.total_quantity = self.total_quantity + d.quantity
 
