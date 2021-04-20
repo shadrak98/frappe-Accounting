@@ -54,6 +54,9 @@ def get_conditions(filters):
 
 	conditions.append("(posting_date >= %(from_date)s and posting_date <= %(to_date)s)")
 
+	if filters.get("company"):
+		conditions.append("company=%(company)s")
+	
 	if filters.get("party_type"):
 		conditions.append("party_type=%(party_type)s")
 
