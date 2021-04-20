@@ -3,7 +3,7 @@ import frappe
 from frappe.utils import now
 
 def make_gl_entry(self, account, debit, credit):
-    party = self.company
+    party = "self"
     party_type = "self"
     if(self.doctype == "Sales Invoice"):
         party_type = "Customer"
